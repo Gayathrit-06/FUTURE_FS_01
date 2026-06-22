@@ -1,0 +1,121 @@
+    /* ── CSS Variables ─────────────────────────────────────────────────── */
+    :root {
+      --radius: 0.625rem;
+      --background: oklch(0.984 0.003 247);
+      --foreground: oklch(0.21 0.04 265);
+      --card: oklch(1 0 0);
+      --card-foreground: oklch(0.21 0.04 265);
+      --accent-cyan: oklch(0.55 0.22 264);
+      --accent-purple: oklch(0.53 0.26 290);
+      --popover: oklch(1 0 0);
+      --popover-foreground: oklch(0.21 0.04 265);
+      --primary: oklch(0.55 0.22 264);
+      --primary-foreground: oklch(1 0 0);
+      --secondary: oklch(0.968 0.007 247.896);
+      --secondary-foreground: oklch(0.21 0.04 265);
+      --muted: oklch(0.968 0.007 247.896);
+      --muted-foreground: oklch(0.45 0.03 257);
+      --accent: oklch(0.968 0.007 247.896);
+      --accent-foreground: oklch(0.21 0.04 265);
+      --destructive: oklch(0.577 0.245 27.325);
+      --border: oklch(0.9 0.012 247);
+      --input: oklch(0.9 0.012 247);
+      --ring: oklch(0.55 0.22 264);
+    }
+
+    .dark {
+      --background: oklch(0.13 0.04 264);
+      --foreground: oklch(1 0 0);
+      --card: oklch(0.2 0.04 264);
+      --card-foreground: oklch(1 0 0);
+      --accent-cyan: oklch(0.78 0.15 200);
+      --accent-purple: oklch(0.7 0.2 295);
+      --popover: oklch(0.2 0.04 264);
+      --popover-foreground: oklch(0.984 0.003 247.858);
+      --primary: oklch(0.78 0.15 200);
+      --primary-foreground: oklch(0.13 0.04 264);
+      --secondary: oklch(0.279 0.041 260.031);
+      --secondary-foreground: oklch(0.984 0.003 247.858);
+      --muted: oklch(0.279 0.041 260.031);
+      --muted-foreground: oklch(0.75 0.03 257);
+      --accent: oklch(0.279 0.041 260.031);
+      --accent-foreground: oklch(0.984 0.003 247.858);
+      --destructive: oklch(0.704 0.191 22.216);
+      --border: oklch(1 0 0 / 10%);
+      --input: oklch(1 0 0 / 15%);
+      --ring: oklch(0.78 0.15 200);
+    }
+
+    * { border-color: var(--border); box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { transition: background-color .4s ease, color .4s ease; }
+    body { background-color: var(--background); color: var(--foreground); font-family: ui-sans-serif, system-ui, sans-serif; }
+
+    /* Tailwind config for CSS vars */
+    .bg-background { background-color: var(--background); }
+    .bg-card { background-color: var(--card); }
+    .text-foreground { color: var(--foreground); }
+    .text-card-foreground { color: var(--card-foreground); }
+    .border-border { border-color: var(--border); }
+    .text-muted-foreground { color: var(--muted-foreground); }
+
+    /* ── Skill grid bg ─────────────────────────────────────────────────── */
+    .skill-grid-bg {
+      background-image:
+        radial-gradient(ellipse at top, oklch(0.3 0.12 270 / 0.4), transparent 60%),
+        radial-gradient(ellipse at bottom right, oklch(0.3 0.15 200 / 0.3), transparent 60%);
+    }
+
+    /* ── Category card ─────────────────────────────────────────────────── */
+    .category-card {
+      position: relative;
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+      box-shadow: 0 10px 40px -20px color-mix(in oklab, var(--accent-cyan) 30%, transparent);
+      transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, box-shadow .35s;
+    }
+    .category-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in oklab, var(--accent-cyan) 50%, transparent);
+      box-shadow: 0 20px 50px -20px color-mix(in oklab, var(--accent-cyan) 55%, transparent);
+    }
+
+    /* ── Skill chip ────────────────────────────────────────────────────── */
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: transform .2s, filter .2s, box-shadow .2s;
+    }
+    .skill-chip:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.15);
+      box-shadow: 0 8px 20px -8px color-mix(in oklab, var(--accent-cyan) 50%, transparent);
+    }
+
+    /* ── Fade-in animation ─────────────────────────────────────────────── */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .animate-fade-in { animation: fadeIn .6s ease forwards; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    .animate-pulse { animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite; }
+
+    /* ── Gradient text helper ──────────────────────────────────────────── */
+    .gradient-text {
+      background: linear-gradient(to bottom right, var(--foreground), var(--foreground), oklch(from var(--foreground) l c h / 0.5));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* ── Hamburger lines ───────────────────────────────────────────────── */
+    .ham-line { display: block; height: 2px; width: 24px; background: var(--foreground); transition: transform .3s, opacity .3s; }
