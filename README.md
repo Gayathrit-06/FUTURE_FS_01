@@ -3,7 +3,7 @@
 Personal portfolio website showcasing my projects, skills, and certifications.
 
 ## 🚀 Live Demo
-🔗 [your-url-here.vercel.app](https://your-url-here.vercel.app)
+🔗 https://gayathriceg2028-portfolio.vercel.app/
 
 ## 🛠️ Tech Stack
 - React 18.3.1
